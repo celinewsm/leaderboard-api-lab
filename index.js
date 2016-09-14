@@ -4,7 +4,6 @@ var cors = require('cors')
 
 var app = express()
 
-// app.use(methodOverride('_method'))
 app.set('view engine', 'ejs')
 
 app.use(express.static('static'))
@@ -46,11 +45,9 @@ app.post('/entries', function (req, res) {
     if (a.score < b.score) {
       return +1
     }
-    // a must be equal to b
     return 0
   })
   res.json(entries)
-// res.render('index')
 })
 
 app.get('/entries/:id/edit', function (req, res) {
@@ -67,10 +64,6 @@ app.delete('/entries/:id', function (req, res) {
 
 app.put('/entries/:id', function (req, res) {
   console.log('express put function start')
-  console.log('params: ', req.body)
-  console.log('id: ', req.params.id)
-  console.log('name: ', req.body.name)
-  console.log('score: ', parseInt(req.body.score, 10))
   var selectedId = getEntry(parseInt(req.params.id, 10))
   selectedId.name = req.body.name
   selectedId.score = parseInt(req.body.score, 10)
@@ -96,14 +89,10 @@ function getEntry (id) {
   var entry
   for (var i = 0; i < entries.length; i++) {
     console.log('id: ' + id)
-    console.log('entry checking: ' + entries[i].id)
     if (entries[i].id === id) {
-      console.log('entry selected: ' + entries[i].id)
-      console.log('entry selected content: ' + entries[i])
       entry = entries[i]
     }
   }
-  console.log('get entry: ' + entry)
   return entry
 }
 

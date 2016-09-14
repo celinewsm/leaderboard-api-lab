@@ -29,7 +29,7 @@ function showList () {
     .done(function (data) {
       console.log('success')
       $('main').empty()
-      data.forEach(function (elem, index) {
+      data.forEach(function (elem) {
         $('main').append('<div class="card"  id="' + elem.id + '">' +
           '<div class="card-header"> name: ' + elem.name + '</div>' +
           '<div class="card-block"> score: ' + elem.score + '</div>' +
